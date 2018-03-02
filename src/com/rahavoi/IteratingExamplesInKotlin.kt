@@ -21,7 +21,7 @@ fun main(args: Array<String>){
 
     //Ranges are not limited to primitives. If objects can be compared, we can use them in ranges:
     println("Kotlin" in "Java" .. "Scala")
-    
+
     //Same with Collections
     println("Kotlin" in setOf("Java", "Scala"))
 }
