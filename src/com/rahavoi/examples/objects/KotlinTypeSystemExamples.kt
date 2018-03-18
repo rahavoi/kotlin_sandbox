@@ -10,7 +10,19 @@ fun main(args: Array<String>){
     //printLength(null) //compiler: null cannot be a value of non-null type String
     //printLengthToleratingNulls(null)
 
-    elvisOperatorExample(null)
+    //elvisOperatorExample(null)
+
+    //safeCastOperatorExample()
+
+    //throws KotlinNullPointerException
+    //notNullAssertionExample(null)
+
+    letExample(null)
+    letExample("ImnotNull")
+
+    //If your class has a non-null member that is not initialized immediately in constructor,
+    //you can use lateinit key word
+    //(most common exampe is members that are initialize as a result of dependency injection)
 
 }
 
@@ -44,4 +56,38 @@ fun elvisOperatorExample(msg: String?){
 
     //Elvis operator can be used to throw exceptions:
     msg ?: throw IllegalArgumentException("Null msg is not allowed!")
+}
+//The as? operator tries to cast a value to the specified type and returns null if the
+//value doesn’t have the proper type.
+fun safeCastOperatorExample(){
+  val test = 2;
+
+  val strResult = test as? String
+  println(strResult)
+
+  val intResult = test as? Int
+  println(intResult)
+
+  //often combined with elvis operator:
+  val result = test as? String ?: "not a string"
+  println(result)
+}
+
+fun notNullAssertionExample(arg : String?){
+    //Well, double exclamation marks are ugly: "I know the value  isn’t null, and I’m ready for an exception if it turns out I’m wrong."
+    val sNotNull : String = arg!!
+
+    println(sNotNull.length)
+}
+
+/**
+ * All the
+let function does is turn the object on which it’s called into a parameter of the lambda. If
+you combine it with the safe call syntax, it effectively converts an object of a nullable
+type on which you call let into a non-null type
+
+ Elegant null check solution:
+ */
+fun letExample(arg : String?){
+    arg?.let { println(it) }
 }
